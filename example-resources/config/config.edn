@@ -1,0 +1,4 @@
+;; this is a base config to be included in every environment's config
+{:env :undefined
+ :a-single-key :test-entry
+ }

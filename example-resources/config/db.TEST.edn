@@ -1,0 +1,4 @@
+{:mysql {:db-type  "mysql"
+         :host     "test-db-host"
+         :port     4000
+         }}

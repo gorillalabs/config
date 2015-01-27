@@ -1,0 +1,9 @@
+;; use this for local tests!
+
+(include "config/config.edn")
+(include "config/db.TEST.edn")
+
+{:env :local
+ :another-key {:map true
+               :map-2 42}
+ }
