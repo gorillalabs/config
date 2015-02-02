@@ -95,6 +95,10 @@
   [origin _ [path]]
   (read-config (path-relative-to origin path)))
 
+(defmethod invoke-extension 'include-as
+  [origin _ [key path]]
+  {key (read-config (path-relative-to origin path))})
+
 (defn config-name [env]
   (if env
     (str "config@" env ".edn")

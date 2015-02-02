@@ -2,6 +2,8 @@
   gorillalabs/config
   "1.0.0-SNAPSHOT"
   :description "A Clojure config file handler"
+  :scm {:name "git"
+        :url "https://github.com/gorillalabs/config"}
   :dependencies [[org.clojure/clojure "1.5.1"]]
   :profiles {:1.6    {:dependencies [[org.clojure/clojure "1.6.0"]]}
              :master {:dependencies [[org.clojure/clojure "1.7.0-master-SNAPSHOT"]]}
@@ -24,4 +26,5 @@
   :jvm-opts ["-Dfile.encoding=utf-8"]
   :source-paths ["src/clojure"]
   :java-source-paths ["src/java"]
+  :lein-release {:deploy-via :clojars}
   )
