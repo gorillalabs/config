@@ -6,7 +6,7 @@
         :url "https://github.com/gorillalabs/config"}
   :dependencies [[org.clojure/clojure "1.5.1"]]
   :profiles {:1.6    {:dependencies [[org.clojure/clojure "1.6.0"]]}
-             :master {:dependencies [[org.clojure/clojure "1.7.0-master-SNAPSHOT"]]}
+             :master {:dependencies [[org.clojure/clojure "1.7.0"]]}
              :dev    {:dependencies [[expectations "2.0.8"]]
                       :resource-paths ["test/resources"]
                       :plugins        [[codox "0.6.4"]
