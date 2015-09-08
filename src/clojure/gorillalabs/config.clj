@@ -106,3 +106,9 @@
 
 (defn init [& [env]]
   (read-config (io/resource (config-name env))))
+
+
+(defmacro with-config
+  [context-sym env & body]
+  `(let [~context-sym (gorillalabs.config/init ~env)]
+     ~@body))

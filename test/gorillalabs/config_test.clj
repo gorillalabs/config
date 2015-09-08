@@ -68,3 +68,12 @@
         (with-redefs [gorillalabs.config/read-config (constantly {:x_a 1 :x_b 2})]
           (merge-config (URL. "jar:file:///test.jar!/config.edn")
                         (form-seq (reader-from-string "(include-as :test \"config/config.edn\") {:a 1} {:b 2}")))))
+
+
+
+
+(expect {:a 1 :c 3}
+        (in (with-redefs [gorillalabs.config/read-config (constantly {:a 1 :c 3})]
+              (with-config config "PROD"
+                           (println config)
+                           config))))
