@@ -28,7 +28,7 @@ definition to your `pom.xml`:
 
 With Leiningen:
 
-    [gorillalabs/config "1.0.0-SNAPSHOT"]
+    [gorillalabs/config "1.0.2"]
 
 
 With Maven:
@@ -36,7 +36,7 @@ With Maven:
     <dependency>
       <groupId>gorillalabs</groupId>
       <artifactId>config</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+      <version>1.0.2</version>
     </dependency>
 
 

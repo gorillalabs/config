@@ -1,6 +1,6 @@
 (defproject
   gorillalabs/config
-  "1.0.1"
+  "1.0.2"
   :description "A Clojure config file handler"
   :scm {:name "git"
         :url  "https://github.com/gorillalabs/config"}
