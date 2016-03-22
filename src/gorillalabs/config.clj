@@ -74,9 +74,10 @@
    :from-something 4321
    :bar 1234}"
   [path]
-  (let [source (-> (io/reader path)
-                   PushbackReader.)]
-    (merge-config path (form-seq source))))
+  (when path
+    (let [source (-> (io/reader path)
+                     PushbackReader.)]
+      (merge-config path (form-seq source)))))
 
 (defn path-relative-to
   "Given two paths `p1` and `p2`, returns a path that is the
