@@ -9,15 +9,15 @@ Simplify configuration handling.
 
 ## Project Maturity
 
-config is young, but in use at our own projects.
+Config is young, but in use at our own projects.
 
 
 ## Artifacts
 
-... artifacts are [released to Clojars](https://clojars.org/clojurewerkz/config). If you are using Maven, add the following repository
-definition to your `pom.xml`:
+... are [released to Clojars](https://clojars.org/gorillalabs/config).
+If you are using Maven, add the following repository definition to your `pom.xml`:
 
-``` xml
+```xml
 <repository>
   <id>clojars.org</id>
   <url>http://clojars.org/repo</url>
@@ -28,17 +28,19 @@ definition to your `pom.xml`:
 
 With Leiningen:
 
-    [gorillalabs/config "1.0.2"]
-
+```edn
+[gorillalabs/config "1.0.4"]
+```
 
 With Maven:
 
-    <dependency>
-      <groupId>gorillalabs</groupId>
-      <artifactId>config</artifactId>
-      <version>1.0.2</version>
-    </dependency>
-
+```xml
+<dependency>
+  <groupId>gorillalabs</groupId>
+  <artifactId>config</artifactId>
+  <version>1.0.4</version>
+</dependency>
+```
 
 ## Documentation & Examples
 
@@ -52,32 +54,38 @@ Lists correspond to invocations of extension points, which in turn produces a ma
 
 A sample config file could look like this (see "/example-resources" in our project)
 
-    (include "config/config.edn")
-    (include "config/db.TEST.edn")
+```clojure
+(include "config/config.edn")
+(include "config/db.TEST.edn")
 
-    {:env :local
-     :another-key {:map true
-                   :map-2 42}
-     }
+{:env :local
+ :another-key {:map true
+               :map-2 42}
+ }
+```
 
 As you see, you can include other files.
 
 
 Read the config using this in your code:
 
-    (gorillalabs.config/init)
+```clojure
+(gorillalabs.config/init)
+```
 
-to read "config.edn" from the classpath
+to read "config.edn" from the classpath; or
 
-or
-
-    (gorillalabs.config/init "ENV")
+```clojure
+(gorillalabs.config/init "ENV")
+```
 
 to read "config@ENV.edn" from the classpath.
 
 If you do not want to store your config on the classpath, just include a reference to a specific file in your config.edn file like this
 
-        (include "file:///external/config/some-config.edn")
+```clojure
+(include "file:///external/config/some-config.edn")
+```
 
 
 ## Community & Support
