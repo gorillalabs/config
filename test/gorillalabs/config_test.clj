@@ -37,19 +37,20 @@
 
 
 
-(expect [['...origin... :a [:b :c]]
-         ['...origin... :a nil]
+(expect [[{} '...origin... :a :b :c]
+         [{} '...origin... :a]
          ]
         (side-effects [invoke-extension]
-                      (mapify '(:a :b :c) '...origin...)
-                      (mapify '(:a) '...origin...)))
+                      (mapify '(:a :b :c) '...origin... {})
+                      (mapify '(:a) '...origin... {})))
 
 
-(expect [[(URL. "jar:file:///test.jar!/config/inner-config.edn")]
-         ]
-        (side-effects [read-config]
-                      (mapify (first (form-seq (reader-from-string "(include \"config/inner-config.edn\")")))
-                              (URL. "jar:file:///test.jar!/config.edn"))))
+
+
+
+(expect (URL. "jar:file:///test.jar!/config/inner-config.edn")
+        (path-relative-to (URL. "jar:file:///test.jar!/config.edn") "config/inner-config.edn"))
+
 
 
 (expect {:a 3 :b 2 :c 3}
@@ -68,3 +69,12 @@
         (with-redefs [gorillalabs.config/read-config (constantly {:x_a 1 :x_b 2})]
           (merge-config (URL. "jar:file:///test.jar!/config.edn")
                         (form-seq (reader-from-string "(include-as :test \"config/config.edn\") {:a 1} {:b 2}")))))
+
+
+
+
+(expect {:a 1 :c 3}
+        (in (with-redefs [gorillalabs.config/read-config (constantly {:a 1 :c 3})]
+              (with-config config "PROD"
+                           (println config)
+                           config))))
