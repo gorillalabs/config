@@ -37,12 +37,12 @@
 
 
 
-(expect [['...origin... :a [:b :c]]
-         ['...origin... :a nil]
+(expect [[{} '...origin... :a [:b :c]]
+         [{} '...origin... :a nil]
          ]
         (side-effects [invoke-extension]
-                      (mapify '(:a :b :c) '...origin...)
-                      (mapify '(:a) '...origin...)))
+                      (mapify '(:a :b :c) '...origin... {})
+                      (mapify '(:a) '...origin... {})))
 
 
 (expect [[(URL. "jar:file:///test.jar!/config/inner-config.edn")]
