@@ -37,19 +37,20 @@
 
 
 
-(expect [['...origin... :a [:b :c]]
-         ['...origin... :a nil]
+(expect [[{} '...origin... :a :b :c]
+         [{} '...origin... :a]
          ]
         (side-effects [invoke-extension]
-                      (mapify '(:a :b :c) '...origin...)
-                      (mapify '(:a) '...origin...)))
+                      (mapify '(:a :b :c) '...origin... {})
+                      (mapify '(:a) '...origin... {})))
 
 
-(expect [[(URL. "jar:file:///test.jar!/config/inner-config.edn")]
-         ]
-        (side-effects [read-config]
-                      (mapify (first (form-seq (reader-from-string "(include \"config/inner-config.edn\")")))
-                              (URL. "jar:file:///test.jar!/config.edn"))))
+
+
+
+(expect (URL. "jar:file:///test.jar!/config/inner-config.edn")
+        (path-relative-to (URL. "jar:file:///test.jar!/config.edn") "config/inner-config.edn"))
+
 
 
 (expect {:a 3 :b 2 :c 3}
