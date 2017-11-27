@@ -6,4 +6,7 @@
 {:env  :test
  :another-key {:map false
                :map-2 21}
- }
+               :from-env #env TARGET_HOST
+               :from-envf #envf ["jdbc:postgresql://psq-prod/prod?user=%s&password=%s"
+                                      PROD_USER PROD_PASSWD]
+}

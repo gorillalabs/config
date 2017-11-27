@@ -26,11 +26,14 @@
 ;; - allowing config for different environments (config@ENVIRONMENT.edn)
 
 
-
 (defn form-seq
   "Lazy seq of forms read from a reader"
   [reader]
-  (let [form (read {:eof reader} reader)]
+  (let [form (read {:readers {'env (fn [x] (System/getenv (str x)))
+                       'envf (fn [[fmt & args]]
+                               (apply format fmt
+                                      (map #(System/getenv (str %)) args)))}
+                    :eof reader} reader)]
     (when-not (= form reader)
       (cons form (lazy-seq (form-seq reader))))))
 
