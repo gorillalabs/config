@@ -4,7 +4,7 @@
   (:refer-clojure :exclude [read])
   (:require [clojure.java.io :as io]
             [clojure.tools.logging :as log]
-            [clojure.edn :refer [read]]
+            [clojure.edn :as edn]
             [environ.core :refer [env]]))
 
 ;; The base version is brought to you by Craig Andera (see https://gist.github.com/candera/4565367),
@@ -30,10 +30,10 @@
 (defn form-seq
   "Lazy seq of forms read from a reader"
   [reader]
-  (let [form (read {:readers {'env (fn [x] (env x))
-                       'envf (fn [[fmt & args]]
-                               (apply format fmt
-                                      (map #(env %) args)))}
+  (let [form (edn/read {:readers {'env env
+                                  'envf (fn [[fmt & args]]
+                                          (apply format fmt
+                                            (map env args)))}
                     :eof reader} reader)]
     (when-not (= form reader)
       (cons form (lazy-seq (form-seq reader))))))

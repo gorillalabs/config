@@ -78,3 +78,10 @@
               (with-config config "PROD"
                            (println config)
                            config))))
+
+
+
+(expect {:a "A" :c "A:A-B:B-"}
+        (in (with-config config "TEST"
+                           (println config)
+                           config)))

@@ -17,7 +17,9 @@
                  [org.clojure/tools.logging "0.3.1"]
                  [environ "1.1.0"]]
   :profiles {:dev {:dependencies   [[expectations "2.0.8"]]
-                   :resource-paths ["test/resources"]
+                   :resource-paths ["test-resources"]
+                   :env {:a "A"
+                         :b "B"}
                    :plugins        [[codox "0.6.4"]
                                     [lein-expectations "0.0.7"]]
                    :codox          {:sources    ["src/clojure"]
